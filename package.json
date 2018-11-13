@@ -1,0 +1,15 @@
+{
+  "name": "redux-lightweight",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel index.js -d dist"
+  },
+  "repository": "git@github.com:doniyor2109/redux-lightweight.git",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5"
+  }
+}
