@@ -94,6 +94,8 @@ export default connect(
 )(Counter);
 ```
 
+[![Edit k91yr687qo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k91yr687qo)
+
 # API Reference
 
 ## createReducer
