@@ -11,9 +11,7 @@
 
 - [API Reference](#api-reference)
   - [createReducer](#createReducer)
-    - [`createReducer(executers)`](#createreducerexecuters)
   - [createActions](#createActions)
-    - [`createActions(executers)`](#createactionsexecuters)
 
 # Introduction
 
@@ -102,3 +100,30 @@ export default connect(
 
 Creates reducer from given executors.
 
+###### EXAMPLE
+
+```js
+export const initialState = { counter: 10 };
+
+export function increment(amount = 1) {
+    return { ...this, counter: this.counter + amount };
+}
+
+const reducer = createReducer({ initialState, increment });
+```
+
+## createActions
+
+Creates actions from given executors.
+
+###### EXAMPLE
+
+```js
+export const initialState = { counter: 10 };
+
+export function increment(amount = 1) {
+    return { ...this, counter: this.counter + amount };
+}
+
+const actions = createActions({ increment });
+```
