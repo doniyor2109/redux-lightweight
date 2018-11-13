@@ -12,6 +12,8 @@
 - [API Reference](#api-reference)
   - [createReducer](#createReducer)
   - [createActions](#createActions)
+  
+- [Licence](#licence)
 
 # Introduction
 
@@ -139,3 +141,7 @@ export function increment(amount = 1) {
 
 const actions = createActions({ increment });
 ```
+
+# Licence
+
+## MIT
