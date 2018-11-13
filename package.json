@@ -1,6 +1,6 @@
 {
   "name": "redux-lightweight",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel index.js -d dist"
@@ -12,5 +12,9 @@
     "@babel/core": "^7.1.5",
     "@babel/preset-env": "^7.1.5"
   },
-  "keywords": ["redux", "action", "reducer"]
+  "keywords": [
+    "redux",
+    "action",
+    "reducer"
+  ]
 }
