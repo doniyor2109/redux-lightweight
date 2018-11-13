@@ -4,15 +4,12 @@
 
 - [Introduction](#introduction)
   - [Motivation](#motivation)
-
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
-
 - [API Reference](#api-reference)
   - [createReducer](#createReducer)
   - [createActions](#createActions)
-  
 - [Licence](#licence)
 
 # Introduction
