@@ -1,5 +1,6 @@
 # redux-lightweight
 
+This library is collects your action types, action creators and reducer in one place and allows scale your redux application.
 ### Table of Contents
 
 - [Introduction](#introduction)
