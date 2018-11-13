@@ -98,6 +98,12 @@ export default connect(
 
 ## createReducer
 
+```js
+createReducer(
+  executors
+)
+```
+
 Creates reducer from given executors.
 
 ###### EXAMPLE
@@ -113,6 +119,12 @@ const reducer = createReducer({ initialState, increment });
 ```
 
 ## createActions
+
+```js
+createActions(
+  executors
+)
+```
 
 Creates actions from given executors.
 
