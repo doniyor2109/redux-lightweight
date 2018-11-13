@@ -17,7 +17,7 @@
 
 ## Motivation
 
-Redux is great library which solves data managment for React. However it introduces some boilerplate. In order to add one business logic, developer must to create 3 different things (action type, action, reducer). However these codes do one thing together. That is why I have decide to utility that allows declare them in one place.
+Redux is great library which solves data managment for React. However it introduces some boilerplate. In order to add one business logic, developer must to create 3 different things (action type, action, reducer). However these codes do one thing together. That is why I have decide to create utility that allows declare them in one place.
 One business logic should be declared in one place like this:
 
 ```js
