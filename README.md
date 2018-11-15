@@ -3,7 +3,8 @@
 
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/doniyor2109/redux-lightweight/blob/master/LICENSE)
 
-This library is collects your action types, action creators and reducer in one place and allows scale your redux application.
+This library allows to write your action types, action creators and reducer in one function and allows scale your redux application.
+
 ### Table of Contents
 
 - [Introduction](#introduction)
@@ -104,24 +105,25 @@ export default connect(
 In order to conver from redux style action types, action creators and reducer to redux-lightweight function, you should merge them into one function and you should also declare `initialState` variable.
 ```diff
 
-- const INCREMENT = 'INCREMENT';
+- const ADD = 'ADD';
 
-- const increment = () => ({
--    type: INCREMENT,
+- const add = (number) => ({
+-    type: ADD,
+-    payload: number,
 - });
 
-export const initialState = { counter: 0 };
+export const initialState = { number: 0 };
 
 - const reducer = (state = initialState, action) => {
 -    switch (action.type) {
--        case INCREMENT:
--            return { ...state, counter: state.counter + 1 };
+-        case ADD:
+-            return { ...state, number: state.number + action.payload };
 -        default:
 -            return state;
 -    }
 -}
-+ export function increment() {
-+  return { ...this, counter: this.counter + 1 };
++ export function add(number) {
++  return { ...this, counter: this.number + number };
 +}
 ```
 
