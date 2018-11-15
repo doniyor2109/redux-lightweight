@@ -69,9 +69,9 @@ counterReducers.js
 ```js
 import { createReducer } from 'redux-lightweight';
 
-import * as counterReducer from './counter';
+import * as counter from './counter';
 
-export default createReducer(counterReducer);
+export default createReducer(counter);
 ```
 
 Counter.js
@@ -80,7 +80,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createActions } from 'redux-lightweight';
 
-import * as counterActions from './counter';
+import * as counter from './counter';
 
 function Counter({ counter, increment, decrement }) {
     return (
@@ -94,7 +94,7 @@ function Counter({ counter, increment, decrement }) {
 
 export default connect(
     ({ counter }) => ({ counter }),
-    createActions(counterActions)
+    createActions(counter)
 )(Counter);
 ```
 
