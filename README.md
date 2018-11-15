@@ -123,7 +123,7 @@ export const initialState = { number: 0 };
 -    }
 -}
 + export function add(number) {
-+  return { ...this, counter: this.number + number };
++  return { ...this, number: this.number + number };
 +}
 ```
 
