@@ -12,7 +12,7 @@ This library allows to write your action types, action creators and reducer in o
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Migrating from redux to redux-lightweight](#migratingfromreduxtoredux-lightweight)
+  - [Migrating from redux to redux-lightweight](#migrating-from-redux-to-redux-lightweight)
   - [Usage with Saga](#usagewithsaga)
 - [API Reference](#api-reference)
   - [createReducer](#createReducer)
