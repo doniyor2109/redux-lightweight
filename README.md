@@ -11,6 +11,8 @@ This library is collects your action types, action creators and reducer in one p
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Migrating from redux to redux-lightweight](#migratingfromreduxtoreduxlightweight)
+  - [Usage with Saga](#usagewithsaga)
 - [API Reference](#api-reference)
   - [createReducer](#createReducer)
   - [createActions](#createActions)
