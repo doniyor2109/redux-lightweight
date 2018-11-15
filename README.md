@@ -11,7 +11,7 @@ This library is collects your action types, action creators and reducer in one p
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Migrating from redux to redux-lightweight](#migratingfromreduxtoreduxlightweight)
+  - [Migrating from redux to redux-lightweight](#migratingfromreduxtoredux-lightweight)
   - [Usage with Saga](#usagewithsaga)
 - [API Reference](#api-reference)
   - [createReducer](#createReducer)
@@ -98,6 +98,33 @@ export default connect(
 ```
 
 [![Edit k91yr687qo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k91yr687qo)
+
+# Migrating from redux to redux-lightweight
+
+#### Old redux style
+```diff
+
+- const INCREMENT = 'INCREMENT';
+
+- const increment = () => ({
+-    type: INCREMENT,
+- });
+
+export const initialState = { counter: 0 };
+
+- const reducer = (state = initialState, action) => {
+-    switch (action.type) {
+-        case INCREMENT:
+-            return { ...state, counter: state.counter + 1 };
+-        default:
+-            return state;
+-    }
+-}
++ export function increment() {
++  return { ...this, counter: this.counter + 1 };
++}
+```
+
 
 # API Reference
 
