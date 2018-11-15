@@ -101,7 +101,7 @@ export default connect(
 
 # Migrating from redux to redux-lightweight
 
-#### Old redux style
+In order to conver from redux style action types, action creators and reducer to redux-lightweight function, you should merge them into one function and you should also declare `initialState` variable.
 ```diff
 
 - const INCREMENT = 'INCREMENT';
