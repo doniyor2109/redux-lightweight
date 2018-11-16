@@ -13,7 +13,7 @@ This library allows to write your action types, action creators and reducer in o
   - [Installation](#installation)
   - [Usage](#usage)
   - [Migrating from redux to redux-lightweight](#migrating-from-redux-to-redux-lightweight)
-  - [Usage with Saga](#usagewithsaga)
+  - [Usage with Saga](#usage-with-saga)
 - [API Reference](#api-reference)
   - [createReducer](#createReducer)
   - [createActions](#createActions)
@@ -105,27 +105,44 @@ export default connect(
 In order to conver from redux style action types, action creators and reducer to redux-lightweight function, you should merge them into one function and you should also declare `initialState` variable.
 ```diff
 
-- const ADD = 'ADD';
+- const INCREMENT = 'INCREMENT';
 
-- const add = (number) => ({
--    type: ADD,
+- const increment = (number) => ({
+-    type: INCREMENT,
 -    payload: number,
 - });
 
-export const initialState = { number: 0 };
+export const initialState = { counter: 0 };
 
 - const reducer = (state = initialState, action) => {
 -    switch (action.type) {
--        case ADD:
--            return { ...state, number: state.number + action.payload };
+-        case INCREMENT:
+-            return { ...state, counter: state.counter + action.payload };
 -        default:
 -            return state;
 -    }
 -}
-+ export function add(number) {
-+  return { ...this, number: this.number + number };
++ export function increment(number) {
++  return { ...this, counter: this.counter + number };
 +}
 ```
+
+# Using with other libraries
+
+### Usage with Saga
+
+```js
+import { takeEvery } from 'redux-saga/effects';
+import { increment } from './counter';
+
+function* rootSaga() {
+  takeEvery(increment.name, incrementWorkerSaga);
+}
+```
+
+<aside class="warnings">
+Currently `redux-lightweight` is designed to take type from function name. That is why it requires to give unieque name for functions.
+</aside>
 
 
 # API Reference
