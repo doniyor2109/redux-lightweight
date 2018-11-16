@@ -142,7 +142,7 @@ function* rootSaga() {
 ```
 
 <aside class="warnings">
-Currently `redux-lightweight` is designed to take type from function name. That is why it requires to give unieque name for functions.
+  Currently <b>redux-lightweight</b> is designed to take type from function name. That is why it requires to give unieque name for functions.
 </aside>
 
 
