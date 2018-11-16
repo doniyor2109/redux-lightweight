@@ -136,7 +136,7 @@ import { takeEvery } from 'redux-saga/effects';
 import { increment } from './counter';
 
 function* rootSaga() {
-  takeEvery(increment.name, incrementWorkerSaga);
+  yield takeEvery(increment.name, incrementWorkerSaga);
 }
 ```
 
