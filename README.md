@@ -150,9 +150,12 @@ function* rootSaga() {
 
 ## `createReducer(entityDetails)`
 
-- `entityDetails`: `object`
-  - `initialState`: `any` Initial state of reducer
-  - `...rest`: `object` Entity functions
+```js
+createReducer({
+  initialState: any, // Initial state of reducer
+  [key: string]: function, // Entity functions
+})
+```
 
 Creates reducer from given entity details
 
@@ -170,7 +173,11 @@ const reducer = createReducer({ initialState, increment });
 
 ## `createActions(entityActions)`
 
-- `entityActions`: `object` Entity functions
+```js
+entityActions({
+  [key: string]: function, // Entity functions
+})
+```
 
 Creates actions from given entity functions
 
