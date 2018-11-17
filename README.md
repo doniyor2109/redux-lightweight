@@ -118,13 +118,19 @@ export const initialState = { counter: 0 };
 - const reducer = (state = initialState, action) => {
 -    switch (action.type) {
 -        case INCREMENT:
--            return { ...state, counter: state.counter + action.payload };
+-            return {
+-                ...state,
+-                counter: state.counter + action.payload,
+-            };
 -        default:
 -            return state;
 -    }
 -}
 + export function increment(number) {
-+  return { ...this, counter: this.counter + number };
++  return {
++      ...this,
++      counter: this.counter + number,
++  };
 +}
 ```
 
