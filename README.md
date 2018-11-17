@@ -16,8 +16,8 @@ This library allows to write your action types, action creators and reducer in o
   - [Using with other libraries](#using-with-other-libraries)
     - [Usage with Saga](#usage-with-saga)
 - [API Reference](#api-reference)
-  - [createReducer](#createReducer)
-  - [createActions](#createActions)
+  - [createReducer(executors)](#createreducerexecutors)
+  - [createActions(executors)](#createactionsexecutors)
 - [Licence](#licence)
 
 # Introduction
@@ -148,13 +148,10 @@ function* rootSaga() {
 
 # API Reference
 
-## createReducer
+## `createReducer(executors)`
 
-```js
-createReducer(
-  executors
-)
-```
+- `executors`: Object
+  - `initialState` Initial state of reducer
 
 Creates reducer from given executors.
 
@@ -170,13 +167,7 @@ export function increment(amount = 1) {
 const reducer = createReducer({ initialState, increment });
 ```
 
-## createActions
-
-```js
-createActions(
-  executors
-)
-```
+## `createActions(executors)`
 
 Creates actions from given executors.
 
