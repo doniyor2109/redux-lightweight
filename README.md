@@ -165,7 +165,10 @@ Creates reducer from given entity details
 export const initialState = { counter: 10 };
 
 export function increment(amount = 1) {
-    return { ...this, counter: this.counter + amount };
+    return {
+      ...this,
+      counter: this.counter + amount,
+    };
 }
 
 const reducer = createReducer({ initialState, increment });
@@ -187,7 +190,10 @@ Creates actions from given entity functions
 export const initialState = { counter: 10 };
 
 export function increment(amount = 1) {
-    return { ...this, counter: this.counter + amount };
+    return {
+      ...this,
+      counter: this.counter + amount,
+    };
 }
 
 const actions = createActions({ increment });
