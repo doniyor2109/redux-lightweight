@@ -16,8 +16,8 @@ This library allows to write your action types, action creators and reducer in o
   - [Using with other libraries](#using-with-other-libraries)
     - [Usage with Saga](#usage-with-saga)
 - [API Reference](#api-reference)
-  - [createReducer](#createReducer)
-  - [createActions](#createActions)
+  - [createReducer(entityDetails)](#createreducerentitydetails)
+  - [createActions(entityActions)](#createactionsentityactions)
 - [Licence](#licence)
 
 # Introduction
@@ -118,13 +118,19 @@ export const initialState = { counter: 0 };
 - const reducer = (state = initialState, action) => {
 -    switch (action.type) {
 -        case INCREMENT:
--            return { ...state, counter: state.counter + action.payload };
+-            return {
+-                ...state,
+-                counter: state.counter + action.payload,
+-            };
 -        default:
 -            return state;
 -    }
 -}
 + export function increment(number) {
-+  return { ...this, counter: this.counter + number };
++  return {
++      ...this,
++      counter: this.counter + number,
++  };
 +}
 ```
 
@@ -142,21 +148,22 @@ function* rootSaga() {
 ```
 
 <aside class="warnings">
-Currently `redux-lightweight` is designed to take type from function name. That is why it requires to give unieque name for functions.
+  Currently <b>redux-lightweight</b> is designed to take type from function name. That is why it requires to give unieque name for functions.
 </aside>
 
 
 # API Reference
 
-## createReducer
+## `createReducer(entityDetails)`
 
 ```js
-createReducer(
-  executors
-)
+createReducer({
+  initialState: any, // Initial state of reducer
+  [key: string]: function, // Entity functions
+})
 ```
 
-Creates reducer from given executors.
+Creates reducer from given entity details
 
 ###### EXAMPLE
 
@@ -164,21 +171,24 @@ Creates reducer from given executors.
 export const initialState = { counter: 10 };
 
 export function increment(amount = 1) {
-    return { ...this, counter: this.counter + amount };
+    return {
+      ...this,
+      counter: this.counter + amount,
+    };
 }
 
 const reducer = createReducer({ initialState, increment });
 ```
 
-## createActions
+## `createActions(entityActions)`
 
 ```js
-createActions(
-  executors
-)
+entityActions({
+  [key: string]: function, // Entity functions
+})
 ```
 
-Creates actions from given executors.
+Creates actions from given entity functions
 
 ###### EXAMPLE
 
@@ -186,7 +196,10 @@ Creates actions from given executors.
 export const initialState = { counter: 10 };
 
 export function increment(amount = 1) {
-    return { ...this, counter: this.counter + amount };
+    return {
+      ...this,
+      counter: this.counter + amount,
+    };
 }
 
 const actions = createActions({ increment });
