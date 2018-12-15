@@ -25,7 +25,7 @@ This library allows to write your action types, action creators and reducer in o
 
 ## Motivation
 
-Redux is great library which solves data managment for React. However it introduces some boilerplate. In order to add one business logic, developer must to create 3 different things (action type, action, reducer). However these codes do one thing together. That is why I have decide to create utility that allows declare them in one place.
+Redux is great library which solves data managment. However it introduces some boilerplate. In order to add one business logic, developer must create 3 different things (action type, action, reducer) and they do one thing together. That is why I have decide to create utility that allows declare them in one place.
 One business logic should be declared in one place like this:
 
 ```js
@@ -79,7 +79,7 @@ export const counterReducer = reducer
 export default actions
 ```
 
-CounterComponent.js
+CounterComponent.jsx
 ```jsx harmony
 import React from 'react';
 import { connect } from 'react-redux';
