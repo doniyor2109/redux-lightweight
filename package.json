@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "main": "dist/index.js",
   "jsnext:module": "lib/index.js",
+  "typings": "typings.d.ts",
   "scripts": {
     "test": "jest",
     "build": "babel lib -d dist --ignore 'lib/**/*.test.js','lib/**/*.mock.js'"
