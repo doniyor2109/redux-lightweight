@@ -2,16 +2,21 @@
   "name": "redux-lightweight",
   "version": "0.0.2",
   "main": "dist/index.js",
+  "jsnext:module": "lib/index.js",
   "scripts": {
-    "build": "babel index.js -d dist"
+    "build": "babel lib -d dist"
   },
   "repository": "git@github.com:doniyor2109/redux-lightweight.git",
   "license": "MIT",
   "devDependencies": {
+    "react": "next",
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
     "@babel/preset-env": "^7.1.5",
     "babel-preset-minify": "^0.5.0"
+  },
+  "peerDependencies": {
+    "react": "next"
   },
   "keywords": [
     "redux",
