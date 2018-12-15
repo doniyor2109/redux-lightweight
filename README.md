@@ -14,12 +14,11 @@ This library allows to write your action types, action creators and reducer in o
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Migrating from redux to redux-lightweight](#migrating-from-redux-to-redux-lightweight)
   - [Using with other libraries](#using-with-other-libraries)
     - [Usage with Saga](#usage-with-saga)
 - [API Reference](#api-reference)
-  - [createReducer(entityDetails)](#createreducerentitydetails)
-  - [createActions(entityActions)](#createactionsentityactions)
+  - [createUpdater(Updater)](#createupdaterupdater)
+  - [useUpdater(Updater)](#useupdaterupdater)
 - [Licence](#licence)
 
 # Introduction
