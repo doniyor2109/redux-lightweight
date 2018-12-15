@@ -5,7 +5,7 @@
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/doniyor2109/redux-lightweight/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-This library allows to write your action types, action creators and reducer in one function and allows scale your redux application.
+This library allows you to write your action types, action creators and reducer in one place.
 
 ### Table of Contents
 
@@ -55,6 +55,8 @@ $ yarn add redux-lightweight
 ```
 
 ## Usage
+
+## Usage with Redux
 
 Counter.js
 ```js
@@ -107,6 +109,42 @@ export default connect(
 
 [![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fredux%2Findex.js&moduleview=1)
 
+## Usage with Hooks
+
+Counter.js
+```js
+export class Counter {
+  state = 10
+  
+  increment(amount = 1) {
+    return this.state + amount;
+  }
+  
+  decrement(amount = 1) {
+    return this.state - amount;
+  }
+}
+```
+
+CounterComponent.jsx
+```jsx harmony
+import React from 'react';
+
+import { Counter } from './Counter';
+
+function Counter() {
+    const [counter, { increment, decrement }] = useUpdater(Counter);
+    return (
+        <>
+            <p>{counter}</p>
+            <button onClick={increment}>+</button>
+            <button onClick={decrement}>-</button>
+        </>
+    );
+}
+```
+
+[![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fhook%2Findex.js&moduleview=1)
 
 # Using with other libraries
 
