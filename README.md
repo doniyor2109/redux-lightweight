@@ -5,7 +5,7 @@
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/doniyor2109/redux-lightweight/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-This library allows to write your action types, action creators and reducer in one function and allows scale your redux application.
+This library allows you to write your action types, action creators and reducer in one place.
 
 ### Table of Contents
 
@@ -14,26 +14,27 @@ This library allows to write your action types, action creators and reducer in o
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Migrating from redux to redux-lightweight](#migrating-from-redux-to-redux-lightweight)
   - [Using with other libraries](#using-with-other-libraries)
     - [Usage with Saga](#usage-with-saga)
 - [API Reference](#api-reference)
-  - [createReducer(entityDetails)](#createreducerentitydetails)
-  - [createActions(entityActions)](#createactionsentityactions)
+  - [createUpdater(Updater)](#createupdaterupdater)
+  - [useUpdater(Updater)](#useupdaterupdater)
 - [Licence](#licence)
 
 # Introduction
 
 ## Motivation
 
-Redux is great library which solves data managment for React. However it introduces some boilerplate. In order to add one business logic, developer must to create 3 different things (action type, action, reducer). However these codes do one thing together. That is why I have decide to create utility that allows declare them in one place.
+Redux is great library which solves data managment. However it introduces some boilerplate. In order to add one business logic, developer must create 3 different things (action type, action, reducer) and they do one thing together. That is why I have decide to create utility that allows declare them in one place.
 One business logic should be declared in one place like this:
 
 ```js
-export const initialState = { counter: 10 };
-
-export function increment(amount = 1) {
-    return { ...this, counter: this.counter + amount };
+class Counter {
+  state = 10
+  
+  increment(amount = 1) {
+    return this.state + amount;
+  }
 }
 ```
 
@@ -55,35 +56,37 @@ $ yarn add redux-lightweight
 
 ## Usage
 
-counter.js
-```js
-export const initialState = { counter: 10 };
-
-export function increment(amount = 1) {
-    return { ...this, counter: this.counter + amount };
-}
-
-export function decrement(amount = 1) {
-    return { ...this, counter: this.counter - amount };
-}
-```
-
-counterReducers.js
-```js
-import { createReducer } from 'redux-lightweight';
-
-import * as counter from './counter';
-
-export default createReducer(counter);
-```
+## Usage with Redux
 
 Counter.js
+```js
+import { createUpdater } from 'redux-lightweight';
+
+export class Counter {
+  state = 10
+  
+  increment(amount = 1) {
+    return this.state + amount;
+  }
+  
+  decrement(amount = 1) {
+    return this.state - amount;
+  }
+}
+
+const [reducer, actions] = createUpdater(Counter)
+
+export const counterReducer = reducer
+
+export default actions
+```
+
+CounterComponent.jsx
 ```jsx harmony
 import React from 'react';
 import { connect } from 'react-redux';
-import { createActions } from 'redux-lightweight';
 
-import * as counter from './counter';
+import * as counter from './Counter';
 
 function Counter({ counter, increment, decrement }) {
     return (
@@ -97,44 +100,52 @@ function Counter({ counter, increment, decrement }) {
 
 export default connect(
     ({ counter }) => ({ counter }),
-    createActions(counter)
+    {
+      increment: counter.increment,
+      decrement: counter.decrement
+    }
 )(Counter);
 ```
 
-[![Edit k91yr687qo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k91yr687qo)
+[![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fredux%2Findex.js&moduleview=1)
 
-# Migrating from redux to redux-lightweight
+## Usage with Hooks
 
-In order to conver from redux style action types, action creators and reducer to redux-lightweight function, you should merge them into one function and you should also declare `initialState` variable.
-```diff
-
-- const INCREMENT = 'INCREMENT';
-
-- const increment = (number) => ({
--    type: INCREMENT,
--    payload: number,
-- });
-
-export const initialState = { counter: 0 };
-
-- const reducer = (state = initialState, action) => {
--    switch (action.type) {
--        case INCREMENT:
--            return {
--                ...state,
--                counter: state.counter + action.payload,
--            };
--        default:
--            return state;
--    }
--}
-+ export function increment(number) {
-+  return {
-+      ...this,
-+      counter: this.counter + number,
-+  };
-+}
+Counter.js
+```js
+export class Counter {
+  state = 10
+  
+  increment(amount = 1) {
+    return this.state + amount;
+  }
+  
+  decrement(amount = 1) {
+    return this.state - amount;
+  }
+}
 ```
+
+CounterComponent.jsx
+```jsx harmony
+import React from 'react';
+import { useUpdater } from 'redux-lightweight';
+
+import { Counter } from './Counter';
+
+function Counter() {
+    const [counter, { increment, decrement }] = useUpdater(Counter);
+    return (
+        <>
+            <p>{counter}</p>
+            <button onClick={increment}>+</button>
+            <button onClick={decrement}>-</button>
+        </>
+    );
+}
+```
+
+[![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fhook%2Findex.js&moduleview=1)
 
 # Using with other libraries
 
@@ -142,69 +153,52 @@ export const initialState = { counter: 0 };
 
 ```js
 import { takeEvery } from 'redux-saga/effects';
-import { increment } from './counter';
+import counterActions from './Counter';
 
 function* rootSaga() {
-  yield takeEvery(increment.name, incrementWorkerSaga);
+  yield takeEvery(counterActions.increment.type, incrementWorkerSaga);
 }
 ```
-
-<aside class="warnings">
-  Currently <b>redux-lightweight</b> is designed to take type from function name. That is why it requires to give unieque name for functions.
-</aside>
-
 
 # API Reference
 
-## `createReducer(entityDetails)`
+## `createUpdater(Updater)`
 
-```js
-createReducer({
-  initialState: any, // Initial state of reducer
-  [key: string]: function, // Entity functions
-})
-```
 
-Creates reducer from given entity details
+Creates reducer and actions for given Updater class
 
 ###### EXAMPLE
 
 ```js
-export const initialState = { counter: 10 };
-
-export function increment(amount = 1) {
-    return {
-      ...this,
-      counter: this.counter + amount,
-    };
+class Counter {
+  state = 10;
+  
+  increment(amount = 1) {
+    return this.state + amount;
+  }
 }
 
-const reducer = createReducer({ initialState, increment });
+const [reducer, actions] = createUpdater(Counter);
 ```
 
-## `createActions(entityActions)`
+## `useUpdater(Updater)`
 
-```js
-entityActions({
-  [key: string]: function, // Entity functions
-})
-```
-
-Creates actions from given entity functions
+Custom hook for using Updater
 
 ###### EXAMPLE
 
 ```js
-export const initialState = { counter: 10 };
-
-export function increment(amount = 1) {
-    return {
-      ...this,
-      counter: this.counter + amount,
-    };
+class Counter {
+  state = 10;
+  
+  increment(amount = 1) {
+    return this.state + amount;
+  }
 }
 
-const actions = createActions({ increment });
+function App() {
+  const [state, actions] = useUpdater(Counter);
+}
 ```
 
 # Licence
