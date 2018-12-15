@@ -30,10 +30,12 @@ Redux is great library which solves data managment for React. However it introdu
 One business logic should be declared in one place like this:
 
 ```js
-export const initialState = { counter: 10 };
-
-export function increment(amount = 1) {
-    return { ...this, counter: this.counter + amount };
+class Counter {
+  state = 10
+  
+  increment(amount = 1) {
+    return this.state + amount;
+  }
 }
 ```
 
@@ -55,35 +57,35 @@ $ yarn add redux-lightweight
 
 ## Usage
 
-counter.js
-```js
-export const initialState = { counter: 10 };
-
-export function increment(amount = 1) {
-    return { ...this, counter: this.counter + amount };
-}
-
-export function decrement(amount = 1) {
-    return { ...this, counter: this.counter - amount };
-}
-```
-
-counterReducers.js
-```js
-import { createReducer } from 'redux-lightweight';
-
-import * as counter from './counter';
-
-export default createReducer(counter);
-```
-
 Counter.js
+```js
+import { createUpdater } from 'redux-lightweight';
+
+export class Counter {
+  state = 10
+  
+  increment(amount = 1) {
+    return this.state + amount;
+  }
+  
+  decrement(amount = 1) {
+    return this.state - amount;
+  }
+}
+
+const [reducer, actions] = createUpdater(Counter)
+
+export const counterReducer = reducer
+
+export default actions
+```
+
+CounterComponent.js
 ```jsx harmony
 import React from 'react';
 import { connect } from 'react-redux';
-import { createActions } from 'redux-lightweight';
 
-import * as counter from './counter';
+import * as counter from './Counter';
 
 function Counter({ counter, increment, decrement }) {
     return (
@@ -97,7 +99,10 @@ function Counter({ counter, increment, decrement }) {
 
 export default connect(
     ({ counter }) => ({ counter }),
-    createActions(counter)
+    {
+      increment: counter.increment,
+      decrement: counter.decrement
+    }
 )(Counter);
 ```
 
@@ -128,11 +133,13 @@ export const initialState = { counter: 0 };
 -            return state;
 -    }
 -}
-+ export function increment(number) {
-+  return {
-+      ...this,
-+      counter: this.counter + number,
-+  };
++ 
++export class Counter {
++  state = { counter: 0 }
++  
++  increment(amount = 1) {
++    return this.state.counter + amount;
++  }
 +}
 ```
 
@@ -142,69 +149,52 @@ export const initialState = { counter: 0 };
 
 ```js
 import { takeEvery } from 'redux-saga/effects';
-import { increment } from './counter';
+import counterActions from './Counter';
 
 function* rootSaga() {
-  yield takeEvery(increment.name, incrementWorkerSaga);
+  yield takeEvery(counterActions.increment.type, incrementWorkerSaga);
 }
 ```
-
-<aside class="warnings">
-  Currently <b>redux-lightweight</b> is designed to take type from function name. That is why it requires to give unieque name for functions.
-</aside>
-
 
 # API Reference
 
-## `createReducer(entityDetails)`
+## `createUpdater(Updater)`
 
-```js
-createReducer({
-  initialState: any, // Initial state of reducer
-  [key: string]: function, // Entity functions
-})
-```
 
-Creates reducer from given entity details
+Creates reducer and actions for given Updater class
 
 ###### EXAMPLE
 
 ```js
-export const initialState = { counter: 10 };
-
-export function increment(amount = 1) {
-    return {
-      ...this,
-      counter: this.counter + amount,
-    };
+class Counter {
+  state = 10;
+  
+  increment(amount = 1) {
+    return this.state + amount;
+  }
 }
 
-const reducer = createReducer({ initialState, increment });
+const [reducer, actions] = createUpdater(Counter);
 ```
 
-## `createActions(entityActions)`
+## `useUpdater(Updater)`
 
-```js
-entityActions({
-  [key: string]: function, // Entity functions
-})
-```
-
-Creates actions from given entity functions
+Custom hook for using Updater
 
 ###### EXAMPLE
 
 ```js
-export const initialState = { counter: 10 };
-
-export function increment(amount = 1) {
-    return {
-      ...this,
-      counter: this.counter + amount,
-    };
+class Counter {
+  state = 10;
+  
+  increment(amount = 1) {
+    return this.state + amount;
+  }
 }
 
-const actions = createActions({ increment });
+function App() {
+  const [state, actions] = useUpdater(Counter);
+}
 ```
 
 # Licence
