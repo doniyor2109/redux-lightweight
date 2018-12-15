@@ -129,6 +129,7 @@ export class Counter {
 CounterComponent.jsx
 ```jsx harmony
 import React from 'react';
+import { useUpdater } from 'redux-lightweight';
 
 import { Counter } from './Counter';
 
