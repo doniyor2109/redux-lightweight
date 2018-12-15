@@ -1,6 +1,6 @@
 {
   "name": "redux-lightweight",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "jsnext:module": "lib/index.js",
   "scripts": {
