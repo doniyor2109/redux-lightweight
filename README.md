@@ -105,42 +105,8 @@ export default connect(
 )(Counter);
 ```
 
-[![Edit k91yr687qo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k91yr687qo)
+[![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fredux%2Findex.js&moduleview=1)
 
-# Migrating from redux to redux-lightweight
-
-In order to conver from redux style action types, action creators and reducer to redux-lightweight function, you should merge them into one function and you should also declare `initialState` variable.
-```diff
-
-- const INCREMENT = 'INCREMENT';
-
-- const increment = (number) => ({
--    type: INCREMENT,
--    payload: number,
-- });
-
-export const initialState = { counter: 0 };
-
-- const reducer = (state = initialState, action) => {
--    switch (action.type) {
--        case INCREMENT:
--            return {
--                ...state,
--                counter: state.counter + action.payload,
--            };
--        default:
--            return state;
--    }
--}
-+ 
-+export class Counter {
-+  state = { counter: 0 }
-+  
-+  increment(amount = 1) {
-+    return this.state.counter + amount;
-+  }
-+}
-```
 
 # Using with other libraries
 
