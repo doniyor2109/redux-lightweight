@@ -5,7 +5,7 @@
   "jsnext:module": "lib/index.js",
   "scripts": {
     "test": "jest",
-    "build": "babel lib -d dist"
+    "build": "babel lib -d dist --ignore 'lib/**/*.test.js','lib/**/*.mock.js'"
   },
   "repository": "git@github.com:doniyor2109/redux-lightweight.git",
   "license": "MIT",
