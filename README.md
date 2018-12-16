@@ -42,6 +42,31 @@ class Counter {
 
 Is't it more readable and clear? All you need to bind this logic with `redux-lightweight`.
 
+## Philosophy
+
+Basically redux-lightweight generates actions, actionTypes and reducers for you.
+
+When you pass your Counter class to `redux-lightweight`, it looks to class name and each method on the class and generates actions from those methods.
+
+```js
+class Counter {
+  state = 10 // Initial state for reducer = 10
+  
+  increment(amount = 1) {  // This generates action called increment. ActionType - "Counter/increment" 
+    return this.state + amount;
+  }
+  
+  decrement(amount = 1) {
+    return this.state - amount;
+  }
+}
+```
+
+All methods of `Counter` class will be actions. In this case there will be two actions:
+
+- `increment`
+- `decrement`
+
 # Getting Started
 
 ## Installation
