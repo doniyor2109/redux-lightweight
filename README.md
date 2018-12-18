@@ -7,6 +7,8 @@ This library allows you to write your action types, action creators and reducer 
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/doniyor2109/redux-lightweight/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
+This library is inpired by [redux-actions](https://github.com/redux-utilities/redux-actions) and [mobx](https://mobx.js.org/)
+
 ### Table of Contents
 
 - [Introduction](#introduction)
@@ -39,6 +41,31 @@ class Counter {
 ```
 
 Is't it more readable and clear? All you need to bind this logic with `redux-lightweight`.
+
+## Philosophy
+
+Basically redux-lightweight generates actions, actionTypes and reducers for you.
+
+When you pass your Counter class to `redux-lightweight`, it looks to class name and each method on the class and generates actions from those methods.
+
+```js
+class Counter {
+  state = 10 // Initial state for reducer = 10
+  
+  increment(amount = 1) {  // This generates action called increment. ActionType - "Counter/increment" 
+    return this.state + amount;
+  }
+  
+  decrement(amount = 1) {
+    return this.state - amount;
+  }
+}
+```
+
+All methods of `Counter` class will be actions. In this case there will be two actions:
+
+- `increment`
+- `decrement`
 
 # Getting Started
 
