@@ -50,7 +50,7 @@ export class Counter {
   }
 }
 
-export const [counterReducer, counterActions] = createUpdater(Counter)
+export const [counterReducer, counterActions] = createUpdater(Counter);
 
 counterReducer //  Counter reducer:
 counterActions //  Counter actions: { increment, decrement }
@@ -72,7 +72,7 @@ $ yarn add redux-lightweight
 
 # Using with other libraries
 
-## Usage with React Redux
+## Usage with react-redux
 
 ```jsx harmony
 import React from 'react';
@@ -82,21 +82,22 @@ import { counterActions } from './Counter';
 
 function Counter({ counter, increment, decrement }) {
     return (
-        <>
+        <div>
             <p>{counter}</p>
             <button onClick={increment}>+</button>
             <button onClick={decrement}>-</button>
-        </>
+        </div>
     );
 }
 
-export default connect(
-    ({ counter }) => ({ counter }),
-    {
-      increment: counterActions.increment,
-      decrement: counterActions.decrement
-    }
-)(Counter);
+const mapStateToProps = ({ counter }) => ({ counter });
+
+const mapDispatchToProps = {
+  increment: counterActions.increment,
+  decrement: counterActions.decrement
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 ```
 
 [![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fredux%2Findex.js&moduleview=1)
@@ -112,11 +113,11 @@ import { Counter } from './Counter';
 function Counter() {
     const [counter, { increment, decrement }] = useUpdater(Counter);
     return (
-        <>
+        <div>
             <p>{counter}</p>
             <button onClick={() => increment()}>+</button>
             <button onClick={() => decrement()}>-</button>
-        </>
+        </div>
     );
 }
 ```
@@ -157,12 +158,32 @@ class Counter {
     return this.state - amount;
   }
 }
+
+export const [counterReducer, counterActions] = createUpdater(Counter)
 ```
 
-All methods of `Counter` class will be actions. In this case there will be two actions:
+- `counterActions` contains all methods of `Counter` class as actions. In this case there will be two actions:
 
-- `increment` - `(amount) => ({ type: "Counter/increment", args: [amount] })`
-- `decrement` - `(amount) => ({ type: "Counter/decrement", args: [amount] })`
+
+```js
+counterActions.increment -> (amount) => ({ type: "Counter/increment", args: [amount] })
+
+counterActions.decrement -> (amount) => ({ type: "Counter/decrement", args: [amount] })
+```
+
+- `counterReducer` is reducer that handles all actions of class. It is same as with following `switch/case` statements:
+
+```js
+switch(type) {
+   case "Counter/increment":
+    return state + amount;
+  case "Counter/decrement":
+    return state - amount;
+   default:
+    return state;
+}
+```
+
 
 If you want to get action type for action then you can access it with `type` property of action:
 
