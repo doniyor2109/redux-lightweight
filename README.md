@@ -1,6 +1,6 @@
 # redux-lightweight
 
-This library allows you to write your action types, action creators and reducer in one place.
+This library generates actions, action types and reducers for you. It uses class as a sytactic sugar for generating actions and reducers.
 
 
 [![](https://img.shields.io/npm/v/redux-lightweight.svg)](https://www.npmjs.com/package/redux-lightweight)
@@ -215,6 +215,7 @@ function App() {
   const [state, actions] = useUpdater(Counter);
 }
 ```
+
 
 # Licence
 
