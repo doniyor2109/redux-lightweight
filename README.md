@@ -114,7 +114,7 @@ function Counter({ counter, increment, decrement }) {
     );
 }
 
-const mapStateToProps = ({ counter }) => ({ counter });
+const mapStateToProps = (state) => ({ counter: state });
 
 const mapDispatchToProps = {
   increment: counterActions.increment,
