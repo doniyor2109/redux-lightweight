@@ -86,7 +86,7 @@ function Counter({ counter, increment, decrement }) {
             <p>{counter}</p>
             <button onClick={increment}>+</button>
             <button onClick={decrement}>-</button>
-        <div/>
+        </div>
     );
 }
 
@@ -117,7 +117,7 @@ function Counter() {
             <p>{counter}</p>
             <button onClick={() => increment()}>+</button>
             <button onClick={() => decrement()}>-</button>
-        <div/>
+        </div>
     );
 }
 ```
