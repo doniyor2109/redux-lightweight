@@ -190,7 +190,9 @@ switch(type) {
 
 If you want to get action type for action then you can access it with `type` property of action:
 
-`counterActions.increment.type // "Counter/increment"`
+```js
+counterActions.increment.type // "Counter/increment"`
+```
  
 # API Reference
 
