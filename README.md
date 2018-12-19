@@ -51,6 +51,8 @@ $ yarn add redux-lightweight
 
 ## Usage
 
+Create class that has `state` property as initial state and methods as actions.
+
 ```js
 import { createUpdater } from 'redux-lightweight';
 
@@ -224,7 +226,7 @@ counterActions.increment.type // "Counter/increment"`
 
 #### `createUpdater(Updater)`
 
-Creates reducer and action creators for given Updater class
+Creates reducer and action creators for given Updater class. Receives class that has `state` property and methods.
 
 ###### EXAMPLE
 
@@ -234,7 +236,7 @@ export const [reducer, actions] = createUpdater(Counter);
 
 #### `useUpdater(Updater)`
 
-Custom hook for using Updater
+Custom hook for using Updater. Receives class that has `state` property and methods.
 
 ###### EXAMPLE
 
