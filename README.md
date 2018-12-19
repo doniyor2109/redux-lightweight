@@ -35,6 +35,20 @@ One business logic should be declared in one place.
 
 This library is inspired by [redux-actions](https://github.com/redux-utilities/redux-actions) and [mobx](https://mobx.js.org/)
 
+# Getting Started
+
+## Installation
+
+```bash
+$ npm install --save redux-lightweight
+```
+
+or
+
+```bash
+$ yarn add redux-lightweight
+```
+
 ## Usage
 
 ```js
@@ -58,23 +72,31 @@ counterReducer //  Counter reducer:
 counterActions //  Counter actions: { increment, decrement }
 ```
 
-# Getting Started
+## Usage with Hooks
 
-## Installation
+```jsx harmony
+import React from 'react';
+import { useUpdater } from 'redux-lightweight';
 
-```bash
-$ npm install --save redux-lightweight
+import { Counter } from './Counter';
+
+function Counter() {
+    const [counter, { increment, decrement }] = useUpdater(Counter);
+    return (
+        <div>
+            <p>{counter}</p>
+            <button onClick={() => increment()}>+</button>
+            <button onClick={() => decrement()}>-</button>
+        </div>
+    );
+}
 ```
 
-or
+[![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fhook%2Findex.js&moduleview=1)
 
-```bash
-$ yarn add redux-lightweight
-```
+## Using with other libraries
 
-# Using with other libraries
-
-## Usage with react-redux
+### Usage with react-redux
 
 ```jsx harmony
 import React from 'react';
@@ -103,28 +125,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 ```
 
 [![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fredux%2Findex.js&moduleview=1)
-
-## Usage with Hooks
-
-```jsx harmony
-import React from 'react';
-import { useUpdater } from 'redux-lightweight';
-
-import { Counter } from './Counter';
-
-function Counter() {
-    const [counter, { increment, decrement }] = useUpdater(Counter);
-    return (
-        <div>
-            <p>{counter}</p>
-            <button onClick={() => increment()}>+</button>
-            <button onClick={() => decrement()}>-</button>
-        </div>
-    );
-}
-```
-
-[![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fhook%2Findex.js&moduleview=1)
 
 ### Usage with Saga
 
