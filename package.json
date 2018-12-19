@@ -5,7 +5,7 @@
   "jsnext:module": "lib/index.js",
   "typings": "typings.d.ts",
   "scripts": {
-    "publish": "npm run build && npm publish",
+    "prepublish": "npm run build",
     "test": "jest",
     "build": "babel lib -d dist --ignore 'lib/**/*.test.js','lib/**/*.mock.js'"
   },
