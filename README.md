@@ -194,7 +194,7 @@ If you want to get action type for action then you can access it with `type` pro
  
 # API Reference
 
-## `createUpdater(Updater)`
+#### `createUpdater(Updater)`
 
 Creates reducer and actions for given Updater class
 
@@ -204,7 +204,7 @@ Creates reducer and actions for given Updater class
 export const [reducer, actions] = createUpdater(Counter);
 ```
 
-## `useUpdater(Updater)`
+#### `useUpdater(Updater)`
 
 Custom hook for using Updater
 
