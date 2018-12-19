@@ -1,6 +1,6 @@
 # redux-lightweight
 
-This library generates actions, action types and reducers for you. It uses class as a sytactic sugar for generating actions and reducers.
+This library generates actions, action types and reducers for you. It uses class as a syntactic sugar for generating actions and reducers.
 
 
 [![](https://img.shields.io/npm/v/redux-lightweight.svg)](https://www.npmjs.com/package/redux-lightweight)
