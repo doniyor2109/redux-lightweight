@@ -18,7 +18,7 @@ This library generates actions, action types and reducers for you. It uses class
   - [Usage](#usage)
     - [Usage with React Hooks](#usage-with-react-hooks)
     - [Usage with react-redux](#usage-with-react-redux)
-    - [Usage with Saga](#usage-with-saga)
+    - [Usage with redux-saga](#usage-with-redux-saga)
   - [Advanced Usage](#advanced-usage)
 - [How it works](#how-it-works)
 - [API Reference](#api-reference)
@@ -125,7 +125,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 
 [![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fredux%2Findex.js&moduleview=1)
 
-### Usage with Saga
+### Usage with redux-saga
 
 In order handle `redux-lightweight` generated action in saga, you can access action type with action function itself:
 ```js
