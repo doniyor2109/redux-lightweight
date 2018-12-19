@@ -147,6 +147,7 @@ When you pass your class to `redux-lightweight`, it generates following things f
 - **Action creators** - Each method of class e.g increment, decrement
 - **Action type** - Prefixed by class name e.g "Counter/increment"
 - **Reducer** - Which handles all actions inside class
+  - In order to set initial state for reducer, declare `state` property on class.
 
 ```js
 class Counter {
