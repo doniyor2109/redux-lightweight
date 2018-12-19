@@ -7,8 +7,6 @@ This library allows you to write your action types, action creators and reducer 
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/doniyor2109/redux-lightweight/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-This library is inpired by [redux-actions](https://github.com/redux-utilities/redux-actions) and [mobx](https://mobx.js.org/)
-
 ### Table of Contents
 
 - [Introduction](#introduction)
@@ -27,32 +25,49 @@ This library is inpired by [redux-actions](https://github.com/redux-utilities/re
 
 ## Motivation
 
-Redux is great library which solves data managment. However it introduces some boilerplate. In order to add one business logic, developer must create 3 different things (action type, action, reducer) and they do one thing together. That is why I have decide to create utility that allows declare them in one place.
-One business logic should be declared in one place like this:
+Redux is great library which solves data management. However it introduces some boilerplate. In order to add one business logic, developer must create 3 different things (action type, action, reducer) and they do one thing together. That is why I have decide to create utility that allows declare them in one place.
+One business logic should be declared in one place.
+
+This library is inspired by [redux-actions](https://github.com/redux-utilities/redux-actions) and [mobx](https://mobx.js.org/)
+
+## Usage
 
 ```js
-class Counter {
-  state = 10
+import { createUpdater } from 'redux-lightweight';
+
+export class Counter {
+  state = 10;
   
   increment(amount = 1) {
     return this.state + amount;
   }
+  
+  decrement(amount = 1) {
+    return this.state - amount;
+  }
 }
+
+export const [counterReducer, counterActions] = createUpdater(Counter)
+
+counterReducer //  Counter reducer:
+counterActions //  Counter actions: { increment, decrement }
 ```
 
-Is't it more readable and clear? All you need to bind this logic with `redux-lightweight`.
-
-## Philosophy
+## How it works
 
 Basically redux-lightweight generates actions, actionTypes and reducers for you.
 
-When you pass your Counter class to `redux-lightweight`, it looks to class name and each method on the class and generates actions from those methods.
+When you pass your class to `redux-lightweight`, it generates following things for you:
+
+- **Action creators** - Each method of class e.g increment, decrement
+- **Action type** - Prefixed by class name e.g "Counter/increment"
+- **Reducer** - Which handles all actions inside class
 
 ```js
 class Counter {
-  state = 10 // Initial state for reducer = 10
+  state = 10; // Initial state for reducer = 10
   
-  increment(amount = 1) {  // This generates action called increment. ActionType - "Counter/increment" 
+  increment(amount = 1) {
     return this.state + amount;
   }
   
@@ -64,8 +79,8 @@ class Counter {
 
 All methods of `Counter` class will be actions. In this case there will be two actions:
 
-- `increment`
-- `decrement`
+- `increment` - `(amount) => ({ type: "Counter/increment", args: [amount] })`
+- `decrement` - `(amount) => ({ type: "Counter/decrement", args: [amount] })`
 
 # Getting Started
 
@@ -81,7 +96,7 @@ or
 $ yarn add redux-lightweight
 ```
 
-## Usage
+# Using with other libraries
 
 ## Usage with Redux
 
@@ -101,11 +116,7 @@ export class Counter {
   }
 }
 
-const [reducer, actions] = createUpdater(Counter)
-
-export const counterReducer = reducer
-
-export default actions
+export const [reducer, counterActions] = createUpdater(Counter)
 ```
 
 CounterComponent.jsx
@@ -113,7 +124,7 @@ CounterComponent.jsx
 import React from 'react';
 import { connect } from 'react-redux';
 
-import * as counter from './Counter';
+import { counterActions } from './Counter';
 
 function Counter({ counter, increment, decrement }) {
     return (
@@ -128,8 +139,8 @@ function Counter({ counter, increment, decrement }) {
 export default connect(
     ({ counter }) => ({ counter }),
     {
-      increment: counter.increment,
-      decrement: counter.decrement
+      increment: counterActions.increment,
+      decrement: counterActions.decrement
     }
 )(Counter);
 ```
@@ -165,8 +176,8 @@ function Counter() {
     return (
         <>
             <p>{counter}</p>
-            <button onClick={increment}>+</button>
-            <button onClick={decrement}>-</button>
+            <button onClick={() => increment()}>+</button>
+            <button onClick={() => decrement()}>-</button>
         </>
     );
 }
@@ -174,13 +185,12 @@ function Counter() {
 
 [![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fhook%2Findex.js&moduleview=1)
 
-# Using with other libraries
-
 ### Usage with Saga
 
 ```js
 import { takeEvery } from 'redux-saga/effects';
-import counterActions from './Counter';
+
+import { counterActions } from './Counter';
 
 function* rootSaga() {
   yield takeEvery(counterActions.increment.type, incrementWorkerSaga);
@@ -190,7 +200,6 @@ function* rootSaga() {
 # API Reference
 
 ## `createUpdater(Updater)`
-
 
 Creates reducer and actions for given Updater class
 
@@ -205,7 +214,7 @@ class Counter {
   }
 }
 
-const [reducer, actions] = createUpdater(Counter);
+export const [reducer, actions] = createUpdater(Counter);
 ```
 
 ## `useUpdater(Updater)`
