@@ -1,6 +1,6 @@
 # redux-lightweight
 
-This library generates actions, action types and reducers for you. It uses class as a syntactic sugar for generating actions and reducers.
+This library generates actions creators, action types and reducers for you. It uses class as a syntactic sugar for generating actions and reducers.
 
 
 [![](https://img.shields.io/npm/v/redux-lightweight.svg)](https://www.npmjs.com/package/redux-lightweight)
@@ -30,7 +30,7 @@ This library generates actions, action types and reducers for you. It uses class
 
 ## Motivation
 
-Redux is great library which solves data management. However it introduces some boilerplate. In order to add one business logic, developer must create 3 different things (action type, action, reducer) and they do one thing together. That is why I have decide to create utility that allows declare them in one place.
+Redux is great library which solves data management. However it introduces some boilerplate. In order to add one business logic, developer must create 3 different things (action type, action creator, reducer) and they do one thing together. That is why I have decide to create utility that allows declare them in one place.
 One business logic should be declared in one place.
 
 This library is inspired by [redux-actions](https://github.com/redux-utilities/redux-actions) and [mobx](https://mobx.js.org/)
@@ -69,10 +69,12 @@ export class Counter {
 export const [counterReducer, counterActions] = createUpdater(Counter);
 
 counterReducer; //  reducer for Counter class
-counterActions; //  actions for Counter  class - { increment, decrement }
+counterActions; //  action creator for Counter  class - { increment, decrement }
 ```
 
 ### Usage with React Hooks
+
+`redux-lightweight` exposes `useUpdater` custom hook to make it easier working with reducers.
 
 ```jsx harmony
 import React from 'react';
@@ -96,6 +98,8 @@ function CounterView() {
 
 
 ### Usage with react-redux
+
+`redux-lightweight` generates simple action creators and reducer. So you can work with them as usual.
 
 ```jsx harmony
 import React from 'react';
@@ -127,7 +131,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 
 ### Usage with Saga
 
-In order handle `redux-lightweight` generated action in saga, you can access action type with action function itself:
+In order to handle `redux-lightweight` generated action creators in saga, you can access action type with action function itself:
+
 ```js
 import { takeEvery } from 'redux-saga/effects';
 
@@ -153,7 +158,7 @@ class Calculator extends Counter {
 export const [counterReducer, counterActions] = createUpdater(Calculator);
 ```
 
-Now it generates 3 actions:
+Now it generates 3 action creators:
 
 - `increment`
 - `decrement`
@@ -161,11 +166,11 @@ Now it generates 3 actions:
 
 # How it works
 
-Basically redux-lightweight generates actions, actionTypes and reducers for you.
+Basically redux-lightweight generates action creators, action types and reducers for you.
 
 When you pass your class to `redux-lightweight`, it generates following things for you:
 
-- **Action creators** - Each method of class e.g increment, decrement
+- **Action creator** - Each method of class e.g increment, decrement
 - **Action type** - Prefixed by class name e.g "Counter/increment"
 - **Reducer** - Which handles all actions inside class
   - In order to set initial state for reducer, declare `state` property on class.
@@ -219,7 +224,7 @@ counterActions.increment.type // "Counter/increment"`
 
 #### `createUpdater(Updater)`
 
-Creates reducer and actions for given Updater class
+Creates reducer and action creators for given Updater class
 
 ###### EXAMPLE
 
