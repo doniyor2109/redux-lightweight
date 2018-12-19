@@ -1,6 +1,6 @@
 {
   "name": "redux-lightweight",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "dist/index.js",
   "jsnext:module": "lib/index.js",
   "typings": "typings.d.ts",
