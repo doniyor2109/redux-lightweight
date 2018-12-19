@@ -16,7 +16,7 @@ This library generates actions, action types and reducers for you. It uses class
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
-    - [Usage with Hooks](#usage-with-hooks)
+    - [Usage with React Hooks](#usage-with-react-hooks)
     - [Usage with react-redux](#usage-with-react-redux)
     - [Usage with Saga](#usage-with-saga)
 - [How it works](#how-it-works)
@@ -126,6 +126,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 
 ### Usage with Saga
 
+In order handle `redux-lightweight` generated action in saga, you can access action type with action function itself:
 ```js
 import { takeEvery } from 'redux-saga/effects';
 
