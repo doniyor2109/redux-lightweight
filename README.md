@@ -19,6 +19,7 @@ This library generates actions, action types and reducers for you. It uses class
     - [Usage with React Hooks](#usage-with-react-hooks)
     - [Usage with react-redux](#usage-with-react-redux)
     - [Usage with Saga](#usage-with-saga)
+  - [Advanced Usage](#advanced-usage)
 - [How it works](#how-it-works)
 - [API Reference](#api-reference)
   - [createUpdater(Updater)](#createupdaterupdater)
@@ -67,8 +68,8 @@ export class Counter {
 
 export const [counterReducer, counterActions] = createUpdater(Counter);
 
-counterReducer //  Counter reducer:
-counterActions //  Counter actions: { increment, decrement }
+counterReducer; //  reducer for Counter class
+counterActions; //  actions for Counter  class - { increment, decrement }
 ```
 
 ### Usage with React Hooks
@@ -79,7 +80,7 @@ import { useUpdater } from 'redux-lightweight';
 
 import { Counter } from './Counter';
 
-function Counter() {
+function CounterView() {
     const [counter, { increment, decrement }] = useUpdater(Counter);
     return (
         <div>
@@ -136,6 +137,27 @@ function* rootSaga() {
   yield takeEvery(counterActions.increment.type, incrementWorkerSaga);
 }
 ```
+
+## Advanced Usage
+
+As `redux-lightweight` works with classes, you can use extended classes as well. That is useful to reuse reducers and actions.
+
+```js
+
+class Calculator extends Counter {
+  double() {
+    return this.state * 2;
+  }
+}
+
+export const [counterReducer, counterActions] = createUpdater(Calculator);
+```
+
+Now it generates 3 actions:
+
+- `increment`
+- `decrement`
+- `double`
 
 # How it works
 
