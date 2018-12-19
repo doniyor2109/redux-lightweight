@@ -82,11 +82,11 @@ import { counterActions } from './Counter';
 
 function Counter({ counter, increment, decrement }) {
     return (
-        <>
+        <div>
             <p>{counter}</p>
             <button onClick={increment}>+</button>
             <button onClick={decrement}>-</button>
-        </>
+        <div/>
     );
 }
 
@@ -113,11 +113,11 @@ import { Counter } from './Counter';
 function Counter() {
     const [counter, { increment, decrement }] = useUpdater(Counter);
     return (
-        <>
+        <div>
             <p>{counter}</p>
             <button onClick={() => increment()}>+</button>
             <button onClick={() => decrement()}>-</button>
-        </>
+        <div/>
     );
 }
 ```
