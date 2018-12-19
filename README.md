@@ -16,8 +16,7 @@ This library allows you to write your action types, action creators and reducer 
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Usage with Hooks](#usage-with-hooks)
-  - [Using with other libraries](#using-with-other-libraries)
+    - [Usage with Hooks](#usage-with-hooks)
     - [Usage with react-redux](#usage-with-react-redux)
     - [Usage with Saga](#usage-with-saga)
 - [How it works](#how-it-works)
@@ -72,7 +71,7 @@ counterReducer //  Counter reducer:
 counterActions //  Counter actions: { increment, decrement }
 ```
 
-## Usage with Hooks
+### Usage with React Hooks
 
 ```jsx harmony
 import React from 'react';
@@ -94,7 +93,6 @@ function Counter() {
 
 [![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fhook%2Findex.js&moduleview=1)
 
-## Using with other libraries
 
 ### Usage with react-redux
 
