@@ -90,13 +90,14 @@ function Counter({ counter, increment, decrement }) {
     );
 }
 
-export default connect(
-    ({ counter }) => ({ counter }),
-    {
-      increment: counterActions.increment,
-      decrement: counterActions.decrement
-    }
-)(Counter);
+const mapStateToProps = ({ counter }) => ({ counter });
+
+const mapDispatchToProps = {
+  increment: counterActions.increment,
+  decrement: counterActions.decrement
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 ```
 
 [![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fredux%2Findex.js&moduleview=1)
