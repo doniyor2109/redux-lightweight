@@ -72,7 +72,7 @@ $ yarn add redux-lightweight
 
 # Using with other libraries
 
-## Usage with React Redux
+## Usage with react-redux
 
 ```jsx harmony
 import React from 'react';
