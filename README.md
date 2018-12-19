@@ -14,8 +14,11 @@ This library allows you to write your action types, action creators and reducer 
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Usage with Hooks](#usage-with-hooks)
   - [Using with other libraries](#using-with-other-libraries)
+    - [Usage with react-redux](#usage-with-react-redux)
     - [Usage with Saga](#usage-with-saga)
+- [How it works](#how-it-works)
 - [API Reference](#api-reference)
   - [createUpdater(Updater)](#createupdaterupdater)
   - [useUpdater(Updater)](#useupdaterupdater)
@@ -53,35 +56,6 @@ counterReducer //  Counter reducer:
 counterActions //  Counter actions: { increment, decrement }
 ```
 
-## How it works
-
-Basically redux-lightweight generates actions, actionTypes and reducers for you.
-
-When you pass your class to `redux-lightweight`, it generates following things for you:
-
-- **Action creators** - Each method of class e.g increment, decrement
-- **Action type** - Prefixed by class name e.g "Counter/increment"
-- **Reducer** - Which handles all actions inside class
-
-```js
-class Counter {
-  state = 10; // Initial state for reducer = 10
-  
-  increment(amount = 1) {
-    return this.state + amount;
-  }
-  
-  decrement(amount = 1) {
-    return this.state - amount;
-  }
-}
-```
-
-All methods of `Counter` class will be actions. In this case there will be two actions:
-
-- `increment` - `(amount) => ({ type: "Counter/increment", args: [amount] })`
-- `decrement` - `(amount) => ({ type: "Counter/decrement", args: [amount] })`
-
 # Getting Started
 
 ## Installation
@@ -98,28 +72,8 @@ $ yarn add redux-lightweight
 
 # Using with other libraries
 
-## Usage with Redux
+## Usage with React Redux
 
-Counter.js
-```js
-import { createUpdater } from 'redux-lightweight';
-
-export class Counter {
-  state = 10
-  
-  increment(amount = 1) {
-    return this.state + amount;
-  }
-  
-  decrement(amount = 1) {
-    return this.state - amount;
-  }
-}
-
-export const [reducer, counterActions] = createUpdater(Counter)
-```
-
-CounterComponent.jsx
 ```jsx harmony
 import React from 'react';
 import { connect } from 'react-redux';
@@ -149,22 +103,6 @@ export default connect(
 
 ## Usage with Hooks
 
-Counter.js
-```js
-export class Counter {
-  state = 10
-  
-  increment(amount = 1) {
-    return this.state + amount;
-  }
-  
-  decrement(amount = 1) {
-    return this.state - amount;
-  }
-}
-```
-
-CounterComponent.jsx
 ```jsx harmony
 import React from 'react';
 import { useUpdater } from 'redux-lightweight';
@@ -197,6 +135,39 @@ function* rootSaga() {
 }
 ```
 
+# How it works
+
+Basically redux-lightweight generates actions, actionTypes and reducers for you.
+
+When you pass your class to `redux-lightweight`, it generates following things for you:
+
+- **Action creators** - Each method of class e.g increment, decrement
+- **Action type** - Prefixed by class name e.g "Counter/increment"
+- **Reducer** - Which handles all actions inside class
+
+```js
+class Counter {
+  state = 10; // Initial state for reducer = 10
+  
+  increment(amount = 1) {
+    return this.state + amount;
+  }
+  
+  decrement(amount = 1) {
+    return this.state - amount;
+  }
+}
+```
+
+All methods of `Counter` class will be actions. In this case there will be two actions:
+
+- `increment` - `(amount) => ({ type: "Counter/increment", args: [amount] })`
+- `decrement` - `(amount) => ({ type: "Counter/decrement", args: [amount] })`
+
+If you want to get action type for action then you can access it with `type` property of action:
+
+`counterActions.increment.type // "Counter/increment"`
+ 
 # API Reference
 
 ## `createUpdater(Updater)`
@@ -206,14 +177,6 @@ Creates reducer and actions for given Updater class
 ###### EXAMPLE
 
 ```js
-class Counter {
-  state = 10;
-  
-  increment(amount = 1) {
-    return this.state + amount;
-  }
-}
-
 export const [reducer, actions] = createUpdater(Counter);
 ```
 
@@ -224,14 +187,6 @@ Custom hook for using Updater
 ###### EXAMPLE
 
 ```js
-class Counter {
-  state = 10;
-  
-  increment(amount = 1) {
-    return this.state + amount;
-  }
-}
-
 function App() {
   const [state, actions] = useUpdater(Counter);
 }
