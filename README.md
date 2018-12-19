@@ -50,7 +50,7 @@ export class Counter {
   }
 }
 
-export const [counterReducer, counterActions] = createUpdater(Counter)
+export const [counterReducer, counterActions] = createUpdater(Counter);
 
 counterReducer //  Counter reducer:
 counterActions //  Counter actions: { increment, decrement }
@@ -158,12 +158,32 @@ class Counter {
     return this.state - amount;
   }
 }
+
+export const [counterReducer, counterActions] = createUpdater(Counter)
 ```
 
-All methods of `Counter` class will be actions. In this case there will be two actions:
+- `counterActions` contains all methods of `Counter` class as actions. In this case there will be two actions:
 
-- `increment` - `(amount) => ({ type: "Counter/increment", args: [amount] })`
-- `decrement` - `(amount) => ({ type: "Counter/decrement", args: [amount] })`
+
+```js
+counterActions.increment -> (amount) => ({ type: "Counter/increment", args: [amount] })
+
+counterActions.decrement -> (amount) => ({ type: "Counter/decrement", args: [amount] })
+```
+
+- `counterReducer` is reducer that handles all actions of class. It is same as with following `switch/case` statements:
+
+```js
+switch(type) {
+   case "Counter/increment":
+    return state + amount;
+  case "Counter/decrement":
+    return state - amount;
+   default:
+    return state;
+}
+```
+
 
 If you want to get action type for action then you can access it with `type` property of action:
 
