@@ -197,9 +197,9 @@ export const [counterReducer, counterActions] = createUpdater(Counter)
 
 
 ```js
-counterActions.increment -> (amount) => ({ type: "Counter/increment", args: [amount] })
+counterActions.increment(100) // { type: "Counter/increment", args: [100] }
 
-counterActions.decrement -> (amount) => ({ type: "Counter/decrement", args: [amount] })
+counterActions.decrement(100) // ({ type: "Counter/decrement", args: [100] })
 ```
 
 - `counterReducer` is reducer that handles all actions of class. It is same as with following `switch/case` statements:
