@@ -159,7 +159,7 @@ class Calculator extends Counter {
   }
 }
 
-export const [counterReducer, counterActions] = createUpdater(Calculator);
+export const [calculatorReducer, calculatorActions] = createUpdater(Calculator);
 ```
 
 Now it generates 3 action creators:
@@ -192,7 +192,7 @@ class Counter {
   }
 }
 
-export const [counterReducer, counterActions] = createUpdater(Counter)
+const [counterReducer, counterActions] = createUpdater(Counter)
 ```
 
 - `counterActions` contains all methods of `Counter` class as actions. In this case there will be two actions:
@@ -233,7 +233,7 @@ Creates reducer and action creators for given Updater class. Receives class that
 ###### EXAMPLE
 
 ```js
-export const [reducer, actions] = createUpdater(Counter);
+const [reducer, actions] = createUpdater(Counter);
 ```
 
 #### `useUpdater(Updater)`
