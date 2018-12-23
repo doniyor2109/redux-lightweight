@@ -8,6 +8,7 @@ This library generates actions creators, action types and reducers for you. It u
 [![codecov](https://codecov.io/gh/doniyor2109/redux-lightweight/branch/master/graph/badge.svg)](https://codecov.io/gh/doniyor2109/redux-lightweight)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/doniyor2109/redux-lightweight/blob/master/LICENSE)
+[![Greenkeeper badge](https://badges.greenkeeper.io/doniyor2109/redux-lightweight.svg)](https://greenkeeper.io/)
 [![](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/doniyor2109/status/1075425404100468736)
 
 
@@ -131,7 +132,7 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 ```
 
-[![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fredux%2Findex.js&moduleview=1) [![Greenkeeper badge](https://badges.greenkeeper.io/doniyor2109/redux-lightweight.svg)](https://greenkeeper.io/)
+[![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fredux%2Findex.js&moduleview=1)
 
 ### Usage with redux-saga
 
