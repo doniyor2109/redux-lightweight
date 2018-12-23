@@ -131,7 +131,7 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 ```
 
-[![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fredux%2Findex.js&moduleview=1)
+[![Edit 0y50x9040v](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/0y50x9040v?module=%2Fsrc%2Fredux%2Findex.js&moduleview=1) [![Greenkeeper badge](https://badges.greenkeeper.io/doniyor2109/redux-lightweight.svg)](https://greenkeeper.io/)
 
 ### Usage with redux-saga
 
