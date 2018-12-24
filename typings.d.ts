@@ -12,9 +12,16 @@ type Actions<T> = {
     (...args: GetArgumentType<T[K]>): Action<GetArgumentType<T[K]>>
   }
 }
+type BoundActions<T> = {
+  [K in keyof T]: {
+    (...args: GetArgumentType<T[K]>): void
+  }
+}
 type GetArgumentType<T> = T extends (...args: infer A) => any ? A : never
 type Updater<T> = {
   state: T
 }
 
 export function createUpdater<T extends Updater<T['state']>>(updater: {new(): T}): [Reducer<T['state'], ExcludeProperty<T, 'state'>>, Actions<ExcludeProperty<T, 'state'>>]
+
+export function useUpdater<T extends Updater<T['state']>>(updater: {new(): T}): [T['state'], BoundActions<ExcludeProperty<T, 'state'>>];

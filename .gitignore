@@ -3,3 +3,5 @@ node_modules
 .idea
 dist
 .DS_Store
+
+type-check.ts
