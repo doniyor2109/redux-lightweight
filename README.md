@@ -8,6 +8,9 @@ This library generates actions creators, action types and reducers for you. It u
 [![codecov](https://codecov.io/gh/doniyor2109/redux-lightweight/branch/master/graph/badge.svg)](https://codecov.io/gh/doniyor2109/redux-lightweight)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/doniyor2109/redux-lightweight/blob/master/LICENSE)
+[![Greenkeeper badge](https://badges.greenkeeper.io/doniyor2109/redux-lightweight.svg)](https://greenkeeper.io/)
+[![](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/doniyor2109/status/1075425404100468736)
+
 
 ### Table of Contents
 
@@ -157,7 +160,7 @@ class Calculator extends Counter {
   }
 }
 
-export const [counterReducer, counterActions] = createUpdater(Calculator);
+export const [calculatorReducer, calculatorActions] = createUpdater(Calculator);
 ```
 
 Now it generates 3 action creators:
@@ -190,16 +193,16 @@ class Counter {
   }
 }
 
-export const [counterReducer, counterActions] = createUpdater(Counter)
+const [counterReducer, counterActions] = createUpdater(Counter)
 ```
 
 - `counterActions` contains all methods of `Counter` class as actions. In this case there will be two actions:
 
 
 ```js
-counterActions.increment -> (amount) => ({ type: "Counter/increment", args: [amount] })
+counterActions.increment(100) // { type: "Counter/increment", args: [100] }
 
-counterActions.decrement -> (amount) => ({ type: "Counter/decrement", args: [amount] })
+counterActions.decrement(100) // { type: "Counter/decrement", args: [100] }
 ```
 
 - `counterReducer` is reducer that handles all actions of class. It is same as with following `switch/case` statements:
@@ -231,7 +234,7 @@ Creates reducer and action creators for given Updater class. Receives class that
 ###### EXAMPLE
 
 ```js
-export const [reducer, actions] = createUpdater(Counter);
+const [reducer, actions] = createUpdater(Counter);
 ```
 
 #### `useUpdater(Updater)`
