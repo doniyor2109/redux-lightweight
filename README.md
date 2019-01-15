@@ -151,6 +151,16 @@ function* rootSaga() {
 
 ### Usage only for actions
 
+If you have already big reducers that are difficult to migrate then you can use library as action generator.
+
+> Arguments passed to actions will be array in payload
+```js
+{
+  type: actionType,
+  payload: args // array of arguments
+}
+```
+
 ```js
 export class Counter {
   increment(amount) {}
@@ -160,14 +170,16 @@ export class Counter {
 
 const [, counterActions] = createUpdater(Counter);
 
-switch(type) {
+switch(type, payload) {
    case counterActions.increment.type:
-    return state + amount;
+    return state + payload[0];
   case counterActions.decrement.type:
-    return state - amount;
+    return state - payload[0];
    default:
     return state;
 }
+
+dispatch(counterActions.increment(1));
 ```
 
 ## Advanced Usage
