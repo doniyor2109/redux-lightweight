@@ -148,6 +148,27 @@ function* rootSaga() {
 }
 ```
 
+### Usage only for actions
+
+```js
+export class Counter {
+  increment(amount) {}
+  
+  decrement(amount) {}
+}
+
+const [, counterActions] = createUpdater(Counter);
+
+switch(type) {
+   case counterActions.increment.type:
+    return state + amount;
+  case "counterActions.decrement.type:
+    return state - amount;
+   default:
+    return state;
+}
+```
+
 ## Advanced Usage
 
 As `redux-lightweight` works with classes, you can use extended classes as well. That is useful to reuse reducers and actions.
