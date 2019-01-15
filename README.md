@@ -22,6 +22,7 @@ This library generates actions creators, action types and reducers for you. It u
     - [Usage with React Hooks](#usage-with-react-hooks)
     - [Usage with react-redux](#usage-with-react-redux)
     - [Usage with redux-saga](#usage-with-redux-saga)
+    - [Usage only for actions](#usage-only-for-actions)
   - [Advanced Usage](#advanced-usage)
 - [How it works](#how-it-works)
 - [API Reference](#api-reference)
@@ -162,7 +163,7 @@ const [, counterActions] = createUpdater(Counter);
 switch(type) {
    case counterActions.increment.type:
     return state + amount;
-  case "counterActions.decrement.type:
+  case counterActions.decrement.type:
     return state - amount;
    default:
     return state;
