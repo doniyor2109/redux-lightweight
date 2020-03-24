@@ -5,7 +5,7 @@
   "dependencies": {
     "react": "link:../node_modules/react",
     "react-dom": "^16.7.0-alpha.2",
-    "react-redux": "^6.0.0",
+    "react-redux": "^7.0.0",
     "react-scripts": "2.1.6",
     "redux": "^4.0.1",
     "redux-lightweight": "../"
