@@ -8,7 +8,7 @@ This library generates actions creators, action types and reducers for you. It u
 [![codecov](https://codecov.io/gh/doniyor2109/redux-lightweight/branch/master/graph/badge.svg)](https://codecov.io/gh/doniyor2109/redux-lightweight)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/doniyor2109/redux-lightweight/blob/master/LICENSE)
-[![Greenkeeper badge](https://badges.greenkeeper.io/doniyor2109/redux-lightweight.svg)](https://greenkeeper.io/)
+
 [![](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/doniyor2109/status/1075425404100468736)
 
 
